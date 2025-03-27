@@ -1,24 +1,20 @@
-# Last updated: 3/25/2025, 8:37:01 PM
+# Last updated: 3/26/2025, 10:29:48 PM
 class Solution(object):
-    def isValidSudoku(self, board):
+    def longestConsecutive(self, nums):
         """
-        :type board: List[List[str]]
-        :rtype: bool
+        :type nums: List[int]
+        :rtype: int
         """
-        cols = collections.defaultdict(set)
-        rows = collections.defaultdict(set)
-        squares = collections.defaultdict(set)
+        numSet = set(nums)
+        longest = 0
 
-        for r in range(9):
-            for c in range(9):
-                if board[r][c] == ".":
-                    continue
-                if (board[r][c] in rows[r] or
-                    board[r][c] in cols[c] or
-                    board[r][c] in squares[(r // 3, c // 3)]):
-                    return False
-                cols[c].add(board[r][c])
-                rows[r].add(board[r][c])
-                squares[(r // 3, c // 3)].add(board[r][c])
-        return True
-        
+        for n in numSet:
+            if (n - 1) not in numSet:
+                length = 1
+                current = n
+                while (current + 1) in numSet:
+                    current += 1
+                    length += 1
+                longest = max(longest, length)
+
+        return longest     
