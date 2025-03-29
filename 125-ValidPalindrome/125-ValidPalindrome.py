@@ -1,4 +1,4 @@
-# Last updated: 3/28/2025, 9:08:11 PM
+# Last updated: 3/28/2025, 9:09:31 PM
 class Solution(object):
     def isPalindrome(self, s):
         """
@@ -10,7 +10,7 @@ class Solution(object):
         while l < r:
             while l < r and not self.alphaNum(s[l]):
                 l += 1
-            while r > l and not self.alphaNum(s[r]):  # <-- fix here
+            while r > l and not self.alphaNum(s[r]):
                 r -= 1
             if s[l].lower() != s[r].lower():
                 return False
