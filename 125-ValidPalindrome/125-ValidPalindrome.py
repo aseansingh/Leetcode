@@ -1,25 +1,21 @@
-# Last updated: 3/28/2025, 9:09:31 PM
+# Last updated: 3/29/2025, 7:01:44 PM
 class Solution(object):
-    def isPalindrome(self, s):
+    def twoSum(self, numbers, target):
         """
-        :type s: str
-        :rtype: bool
+        :type numbers: List[int]
+        :type target: int
+        :rtype: List[int]
         """
-        l, r = 0, len(s) - 1
+        l, r = 0, len(numbers) - 1
 
         while l < r:
-            while l < r and not self.alphaNum(s[l]):
-                l += 1
-            while r > l and not self.alphaNum(s[r]):
-                r -= 1
-            if s[l].lower() != s[r].lower():
-                return False
-            l, r = l + 1, r - 1
-        return True
+            curSum = numbers[l] + numbers[r]
 
-    def alphaNum(self, c):
-        return (ord('A') <= ord(c) <= ord('Z') or
-                ord('a') <= ord(c) <= ord('z') or
-                ord('0') <= ord(c) <= ord('9'))
- 
+            if curSum > target:
+                r -= 1
+            elif curSum < target:
+                l += 1
+            else:
+                return [l + 1, r + 1]
+        return []
         
