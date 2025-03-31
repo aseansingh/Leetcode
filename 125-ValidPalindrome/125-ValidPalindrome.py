@@ -1,21 +1,27 @@
-# Last updated: 3/29/2025, 7:01:44 PM
+# Last updated: 3/30/2025, 9:18:05 PM
 class Solution(object):
-    def twoSum(self, numbers, target):
+    def threeSum(self, nums):
         """
-        :type numbers: List[int]
-        :type target: int
-        :rtype: List[int]
+        :type nums: List[int]
+        :rtype: List[List[int]]
         """
-        l, r = 0, len(numbers) - 1
+        res = []
+        nums.sort()
 
-        while l < r:
-            curSum = numbers[l] + numbers[r]
-
-            if curSum > target:
-                r -= 1
-            elif curSum < target:
-                l += 1
-            else:
-                return [l + 1, r + 1]
-        return []
-        
+        for i, a in enumerate(nums):
+            if i > 0 and a == nums[i - 1]:
+                continue
+            
+            l, r = i + 1, len(nums) - 1
+            while l < r:
+                threeSum = a + nums[l] + nums[r]
+                if threeSum > 0:
+                    r -= 1
+                elif threeSum < 0:
+                    l += 1
+                else:
+                    res.append([a, nums[l], nums[r]])
+                    l += 1
+                    while nums[l] == nums[l - 1] and l < r:
+                        l += 1
+        return res
